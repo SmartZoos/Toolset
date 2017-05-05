@@ -99,7 +99,7 @@
                     lng: this.longitude
                 },
                 zoom: 18,
-                mapTypeId: google.maps.MapTypeId.HYBRID,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
                 disableDefaultUI: true,
                 zoomControl: true,
                 streetViewControl: true,
@@ -134,6 +134,8 @@
                 this.mapData.map = new google.maps.Map(document.getElementById('map'), this.mapData.mapOptions);
 
                 this.mapData.infoWindow = new google.maps.InfoWindow();
+
+                this.initGroundOverlays();
 
                 this.initPlayerMarker();
 
@@ -214,6 +216,19 @@
                     }
                 });
             },
+            initGroundOverlays() {
+                // XXX Overlay should only load when Skansen is chosen
+                // Image should be part of the codebase
+                this.mapData.skansenGroundOverlay = new google.maps.GroundOverlay('http://www.skansen.se/images/google-map-overlay.png',{
+                    north: 59.329167,
+                    south: 59.324011,
+                    east: 18.111242,
+                    west: 18.099022
+                }, {
+                    clickable: false,
+                    map: this.mapData.map
+                });
+            },
             initGameControls() {
                 var map = this.mapData.map,
                     playerMarker = this.mapData.playerMarker,
@@ -283,6 +298,11 @@
             },
             isAnswered(questionId) {
                 return _.has(this.game.answers, questionId);
+            },
+            isCorrect(questionId) {
+                const answer = _.get(this.game.answers, questionId, null);
+
+                return answer && answer.correct === true;
             },
             markAnswered(id, answer) {
                 this.$set(this.game.answers, id, answer);
@@ -370,7 +390,7 @@
                 let iconBase = this.baseUrl + '/img/icons/item/';
 
                 if ( this.isAnswered(question.id) ) {
-                    iconBase += 'answered/';
+                    iconBase += this.isCorrect(question.id) ? 'correct/' : 'incorrect/';
                 } else if ( this.hasProximityCheck() ) {
                     const distance = google.maps.geometry.spherical.computeDistanceBetween(this.mapData.playerMarker.getPosition(), marker.getPosition());
 
