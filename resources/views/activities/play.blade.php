@@ -14,7 +14,6 @@
     <title>{{ config('app.name', 'SmartZoos') }}</title>
 
     <!-- Styles -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/1.8.36/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
     <style>
@@ -61,6 +60,13 @@
                     'textual-answer-placeholder' => trans('pages.play.game.textual-answer-placeholder'),
                     'image-format-hint' => trans('pages.play.game.image-format-hint'),
                     'apply-item-bounds' => trans('pages.play.game.apply-item-bounds'),
+                    'icons' => [
+                        'help' => trans('pages.play.game.icons.help'),
+                        'active' => trans('pages.play.game.icons.active'),
+                        'inactive' => trans('pages.play.game.icons.inactive'),
+                        'correct' => trans('pages.play.game.icons.correct'),
+                        'incorrect' => trans('pages.play.game.icons.incorrect'),
+                    ],
                 ]
             ],
         ]);
