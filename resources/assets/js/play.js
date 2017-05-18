@@ -1,10 +1,19 @@
 //"use strict";
 
 const VueI18n = require('vue-i18n');
+import Raven from 'raven-js';
+import RavenVue from 'raven-js/plugins/vue';
 
 Vue.use(VueI18n);
 Vue.config.lang = window.SmartZoos.config.locale;
 Vue.locale(window.SmartZoos.config.locale, _.cloneDeep(window.SmartZoos.data.translations));
+
+if ( SmartZoos.config.sentry && SmartZoos.config.sentry.sdn) {
+    Raven
+        .config(SmartZoos.config.sentry.sdn)
+        .addPlugin(RavenVue, Vue)
+        .install();
+}
 
 Vue.component('game-map', require('./components/GameMap.vue'));
 
@@ -12,6 +21,8 @@ const playGameApp = new Vue({
     el: '#sz-play-app',
     created: function() {
         var vm = this;
+
+        window.addEventListener('beforeunload', vm.leaving);
 
         window.initMap = function() {
             vm.getGeoLocation(function(position) {
@@ -33,7 +44,8 @@ const playGameApp = new Vue({
             mapInitialised: false,
             latitude: undefined,
             longitude: undefined,
-            geoLocationErrorMessage: null
+            geoLocationErrorMessage: null,
+            checkUnload: true
         };
     },
     methods: {
@@ -64,6 +76,14 @@ const playGameApp = new Vue({
         },
         hasGeoLocationError: function() {
             return !!this.geoLocationErrorMessage;
+        },
+        leaving: function(event) {
+            if ( !this.checkUnload) return false;
+
+            const message = this.$t('exit-confirmation');
+
+            event.returnValue = message;
+            return message;
         }
     }
 });
