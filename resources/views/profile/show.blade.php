@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('footer-scripts')
+<script src="https://backpack.openbadges.org/issuer.js"></script>
+<script src="{{ elixir('js/profile.js') }}"></script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -58,6 +63,35 @@
                     <p>{{ date(trans('general.date-time.formats.long'), strtotime($user->created_at)) }}</p>
                     <h3>{{ trans('general.date-time.updated-at') }}</h3>
                     <p>{{ date(trans('general.date-time.formats.long'), strtotime($user->updated_at)) }}</p>
+                    @if ( $user->badges )
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8">
+                                <h3>{{ trans('pages.profile.labels.badges-earned') }}</h3>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                @if ( count($user->badges) > 0 )
+                                    <button type="button" id="send-to-backpack" class="btn btn-primary pull-right"">
+                                        <i class="mdi mdi-cube-send"></i>
+                                        {{ trans('general.actions.send-to-backpack') }}
+                                    </button>
+                                @endif
+                            </div>
+                        </div>
+                        <div id="badges-earned">
+                            @foreach ( $user->badges as $badge )
+                                <img
+                                    class="media-object openbadge"
+                                    src="{{ $badge->getImageUrl() }}"
+                                    alt="image"
+                                    data-toggle="popover"
+                                    data-placement="top"
+                                    data-trigger="hover"
+                                    title="{{ $badge->name }}"
+                                    data-content="{{ $badge->description . '<br><strong>' . date(trans('general.date-time.formats.medium'), strtotime($badge->pivot->created_at)) . '</strong>' }}"
+                                    data-html="true">
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
