@@ -79,6 +79,8 @@
 
     var connectMarkers =  window.SmartZoos.config.connect_markers || false;
 
+    import MarkerIconMixin from './../mixins/MarkerIcon.js';
+
     export default {
         components: {
             'game-information-modal': require('./GameInformationModal.vue'),
@@ -86,6 +88,7 @@
             'game-results-modal': require('./GameResultsModal.vue')
         },
         props: ['latitude', 'longitude'],
+        mixins: [MarkerIconMixin],
         mounted() {
             this.baseUrl = window.SmartZoos.config.base_url;
 
@@ -114,9 +117,9 @@
                   },
                 ]
             };
-            this.mapData.iconAnchor = new google.maps.Point(17.35, 20);
-            this.mapData.iconSize = new google.maps.Size(52, 60);
-            this.mapData.iconScaledSize = new google.maps.Size(34.7, 40);
+            this.mapData.iconAnchor = new google.maps.Point(20, 20);
+            this.mapData.iconSize = new google.maps.Size(60, 60);
+            this.mapData.iconScaledSize = new google.maps.Size(40, 40);
 
             this.initMap();
         },
@@ -408,35 +411,30 @@
                     this.$refs.questionModal.open();
                 });
             },
-            detectAndSetMarkerIcon(marker) {
+            detectMarkerIconState(marker) {
                 // TODO Check it we should fail in case question could not be found
                 const question = _.find(this.game.activity.questions, ['id', marker.questionId]);
-                const nameMapping = {
-                    1: 'information',
-                    2: 'one-correct-answer',
-                    3: 'multiple-correct-answers',
-                    4: 'freeform-answer',
-                    5: 'match-pairs',
-                    6: 'embedded-content',
-                    7: 'photo'
-                };
-                let iconBase = this.baseUrl + '/img/icons/item/';
 
                 if ( this.isAnswered(question.id) ) {
-                    iconBase += this.isCorrect(question.id) ? 'correct/' : 'incorrect/';
+                    return this.isCorrect(question.id) ? 'correct' : 'incorrect';
                 } else if ( this.hasProximityCheck() ) {
                     const distance = google.maps.geometry.spherical.computeDistanceBetween(this.mapData.playerMarker.getPosition(), marker.getPosition());
 
                     if ( distance > this.getProximityRadius() ) {
-                        iconBase += 'inactive/';
+                        return 'inactive';
                     }
                 }
+
+                return 'active';
+            },
+            detectAndSetMarkerIcon(marker) {
+                const state = this.detectMarkerIconState(marker);
 
                 marker.setIcon({
                     anchor: this.mapData.iconAnchor,
                     size: this.mapData.iconSize,
                     scaledSize: this.mapData.iconScaledSize,
-                    url: iconBase + nameMapping[question.type] + '.png'
+                    url: this.getIconUrl(state)
                 });
             },
             getMarkerBounds() {
