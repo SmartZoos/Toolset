@@ -3,13 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 use App\Options\ZooOptions;
 use App\Options\QuestionTypeOptions;
 use App\Options\LanguageOptions;
 
+use Illuminate\Support\Facades\File;
+
 class ActivityItem extends Model
 {
+    use LogsActivity;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -27,6 +32,12 @@ class ActivityItem extends Model
     protected $appends = [
         'icon_url'
     ];
+
+    /**
+     * Define attributes to be logged
+     * @var array
+     */
+    protected static $logAttributes = ['title',];
 
     /**
      * Sets icon_url attribute to icon URL value.
@@ -201,5 +212,25 @@ class ActivityItem extends Model
         }
 
         return [];
+    }
+
+    /**
+     * Determines if Activity Item has an Image
+     * @return boolean
+     */
+    public function hasImage() {
+        return !!$this->image;
+    }
+
+    /**
+     * Get full URL for image from public storage or respond with NULL
+     * @return mixed Full public URL to image file or NULL
+     */
+    public function getImageUrl() {
+        if ( $this->hasImage() ) {
+            return asset('uploads/images/' . $this->getStoragePath() . $this->image);
+        }
+
+        return NULL;
     }
 }

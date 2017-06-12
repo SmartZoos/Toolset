@@ -57,6 +57,32 @@
             </div>
         </div>
 
+        <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+            {!! Form::label('image', trans('general.forms.labels.image'), [
+                'class' => 'col-md-4 control-label',
+            ]) !!}
+            <div class="col-md-6">
+                <div class="input-group col-xs-12">
+                    <span class="input-group-addon">
+                        <i class="mdi mdi-image" aria-hidden="true"></i>
+                    </span>
+                    {!! Form::file('image', [
+                        'class' => 'form-control',
+                    ]) !!}
+                </div>
+
+                <p class="help-block">
+                    {{ trans('general.forms.help.image') }}
+                </p>
+
+                @if ($errors->has('image'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('image') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
         <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
             {!! Form::label('type', trans('general.forms.labels.question-type'), [
                 'class' => 'col-md-4 control-label',
@@ -190,6 +216,26 @@
                 @if ($errors->has('longitude'))
                     <span class="help-block">
                         <strong>{{ $errors->first('longitude') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="form-group{{ $errors->has('read_more') ? ' has-error' : '' }}">
+            {!! Form::label('read_more', trans('general.forms.labels.read-more'), [
+                'class' => 'col-md-4 control-label',
+            ]) !!}
+            <div class="col-md-6">
+                <div class="input-group col-xs-12">
+                    {!! Form::url('read_more', null, [
+                        'class' => 'form-control',
+                        'placeholder' => trans('general.forms.placeholders.read-more'),
+                    ]) !!}
+                </div>
+
+                @if ($errors->has('read_more'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('read_more') }}</strong>
                     </span>
                 @endif
             </div>

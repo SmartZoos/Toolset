@@ -7,6 +7,9 @@
                     <h4 class="modal-title">{{ title() }}</h4>
                 </div>
                 <div class="modal-body">
+                    <div v-if="hasImage()">
+                        <img src="" class="img-responsive" alt="image" v-bind:src="image()">
+                    </div>
                     <p class="sz-display-new-lines">{{ description() }}</p>
 
                     <div v-if="isOneCorrectAnswer()">
@@ -111,6 +114,10 @@
                 </div>
 
                 <div class="modal-footer">
+                    <a href="" v-bind:href="readMore()" target="_blank" class="btn btn-default" v-if="hasReadMore()">
+                        <i class="mdi mdi-open-in-new" aria-hidden="true"></i>
+                        {{ $t('read-more-about') }}
+                    </a>
                     <button type="button" class="btn btn-default" v-on:click="close()" v-bind:disabled="inAjaxCall" v-bind:title="$t('close')">
                         <i class="mdi mdi-close"></i>
                     </button>
@@ -262,8 +269,20 @@
             description() {
                 return this.question ? this.question.description : '';
             },
+            hasImage() {
+                return this.question && this.question.image;
+            },
+            image() {
+                return this.question ? this.question.image : '';
+            },
             embeddedContent() {
                 return this.question ? this.question.embedded_content : '';
+            },
+            hasReadMore() {
+                return this.question && this.question.read_more;
+            },
+            readMore() {
+                return this.question ? this.question.read_more : '';
             },
             options() {
                 return ( this.question && this.question.options ) ? this.question.options : [];

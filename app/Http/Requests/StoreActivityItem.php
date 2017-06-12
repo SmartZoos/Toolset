@@ -38,6 +38,8 @@ class StoreActivityItem extends FormRequest
             'language' => 'required|in:en,et,ru,fi,swe',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
+            'read_more' => 'url',
+            'image' => 'image|mimes:jpeg,jpg,png',
         ];
     }
 }

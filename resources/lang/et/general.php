@@ -58,11 +58,13 @@ return [
            'activity-items' => 'Rajapunktid',
            'proximity' => 'Kaugus',
            'search-text' => 'Otsi teksti',
+           'read-more' => 'Lisainfo',
+           'image' => 'Pilt',
        ],
        'help' => [
            'playing-time' => 'Raja läbimiseks kuluv aeg minutites',
            'difficulty-level' => 'Vali vahemik etteantud skaalal.',
-           'featured-image' => 'Sobiv formaat on kas JPEG või PNG. Üleslaetud pilt vähendatakse mõõtu 800 x 800 pikslit.',
+           'image' => 'Sobiv formaat on kas JPEG või PNG. Üleslaetud pilt vähendatakse mõõtu 800 x 800 pikslit.',
            'map' => 'Palun vali sobiv loomaaed ja lohista marker õigesse asukohta.',
            'question-types' => [
                'information' => 'Kirjeldav tekst mängu kohta.',
@@ -88,6 +90,7 @@ return [
            'option-text' => 'Valikute tekst...',
            'embedded-content' => 'Lisa vistutatav kood siia',
            'search-text' => 'Otsimiseks sisesta tekstiosa',
+           'read-more' => 'Sisesta veebiaadress kust leiab rohkem infot',
        ],
        'options' => [
            'any' => 'Kõik',
