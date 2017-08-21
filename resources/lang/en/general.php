@@ -27,7 +27,7 @@ return [
        'et' => 'Estonian',
        'ru' => 'Russian',
        'fi' => 'Finnish',
-       'swe' => 'Swedish',
+       'sv' => 'Swedish',
    ],
    'zoos' => [
      'skansen' => 'Skansen',
@@ -51,7 +51,7 @@ return [
            'difficulty-level' => 'Difficulty Level',
            'playing-time' => 'Playing Time',
            'contact-information' => 'Contact Information',
-           'featured-image' => 'Freatured Image',
+           'featured-image' => 'Featured Image',
            'zoo' => 'Zoo',
            'question-type' => 'Question Type',
            'location' => 'Location',
