@@ -1,9 +1,9 @@
 {
-  "css/app.css": "css/app-1a0de58ee2.css",
-  "js/app.js": "js/app-e1321630d9.js",
-  "js/create_edit_activity.js": "js/create_edit_activity-595fd5665f.js",
-  "js/create_edit_activity_item.js": "js/create_edit_activity_item-eab0c0ecd2.js",
-  "js/play.js": "js/play-258f50192a.js",
+  "css/app.css": "css/app-eeb181ca6e.css",
+  "js/app.js": "js/app-90142d0e8e.js",
+  "js/create_edit_activity.js": "js/create_edit_activity-b7718c68df.js",
+  "js/create_edit_activity_item.js": "js/create_edit_activity_item-a88e6b6e1e.js",
+  "js/play.js": "js/play-46fc49d21f.js",
   "js/profile.js": "js/profile-bbb26b86ca.js",
   "js/search_activities.js": "js/search_activities-898b023511.js",
   "js/welcome.js": "js/welcome-fbc94c6752.js"
