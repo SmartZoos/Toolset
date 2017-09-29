@@ -68,12 +68,34 @@
                     'go' => trans('pages.play.game.go'),
                     'gps-error' => trans('pages.play.game.gps-error'),
                     'read-more-about' => trans('pages.play.game.read-more-about'),
+                    'back' => trans('pages.play.game.back'),
+                    'next' => trans('pages.play.game.next'),
+                    'got-it' => trans('pages.play.game.got-it'),
+                    'tips-text' => trans('pages.play.game.tips-text'),
                     'icons' => [
                         'help' => trans('pages.play.game.icons.help'),
                         'active' => trans('pages.play.game.icons.active'),
                         'inactive' => trans('pages.play.game.icons.inactive'),
                         'correct' => trans('pages.play.game.icons.correct'),
                         'incorrect' => trans('pages.play.game.icons.incorrect'),
+                    ],
+                    'items' => [
+                        'look_closely' => [
+                            'title' => trans('pages.play.game.items.look_closely.title'),
+                            'description' => trans('pages.play.game.items.look_closely.description'),
+                        ],
+                        'look_out' => [
+                            'title' => trans('pages.play.game.items.look_out.title'),
+                            'description' => trans('pages.play.game.items.look_out.description'),
+                        ],
+                        'do_not_disturb' => [
+                            'title' => trans('pages.play.game.items.do_not_disturb.title'),
+                            'description' => trans('pages.play.game.items.do_not_disturb.description'),
+                        ],
+                        'help_others' => [
+                            'title' => trans('pages.play.game.items.help_others.title'),
+                            'description' => trans('pages.play.game.items.help_others.description'),
+                        ],
                     ],
                 ]
             ],
@@ -97,7 +119,10 @@
             </transition>
         </div>
 
-        <game-map v-if="!isLoading()" v-bind:latitude="latitude" v-bind:longitude="longitude"></game-map>
+        <game-tutorial-modal ref="tutorialModal" v-if="game" v-bind:activity="game.activity"></game-tutorial-modal>
+        <game-information-modal ref="informationModal" v-if="game" v-bind:activity="game.activity"></game-information-modal>
+        <game-results-modal ref="resultsModal" v-if="isGameComplete()" v-bind:activity="game.activity" v-bind:answers="game.answers"></game-results-modal>
+        <game-map v-if="!isLoading()" v-bind:latitude="latitude" v-bind:longitude="longitude" v-bind:game="game" v-bind:base-url="baseUrl"></game-map>
     </div>
 
     <!-- Scripts -->
