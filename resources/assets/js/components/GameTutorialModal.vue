@@ -9,7 +9,7 @@
                 <div class="modal-body">
                     <h4 class="text-center">{{ $t('tips-text') }}</h4>
                     <div class="tips" ref="tips">
-                        <transition name="tip-side" mode="out-in" v-bind:enter-active-class="enterActivieClass" v-bind:leave-active-class="leaveActiveClass">
+                        <transition name="tip-side" mode="out-in" v-bind:enter-active-class="enterActiveClass" v-bind:leave-active-class="leaveActiveClass">
                             <div class="tip" v-if="currentItem === 'look_closely'" key="look_closely">
                                 <div class="tip-image">
                                     <img class="img-responsive center-block" alt="image" v-bind:src="getItemImageUrl('look_closely')">
@@ -61,24 +61,41 @@
         props: ['activity'],
         mounted() {
             this.baseUrl = window.SmartZoos.config.base_url;
+
+            const vm = this;
+            this.hammertime = new Hammer.Manager(this.$refs.tips, {
+                recognizers: [
+                    [Hammer.Swipe,{ direction: Hammer.DIRECTION_HORIZONTAL }]
+                ]
+            });
+            this.hammertime.on('swipeleft', () => {
+                vm.nextItem();
+
+                if ( vm.isLastItem() ) {
+                    vm.close();
+                }
+            });
+            this.hammertime.on('swiperight', () => {
+                vm.previousItem();
+            });
         },
         data() {
             return {
                 baseUrl: '',
                 currentItem: 'look_closely',
                 items: ['look_closely', 'look_out', 'do_not_disturb', 'help_others'],
-                enterActivieClass: 'animated slideInLeft',
-                leaveActiveClass: 'animated slideOutRight'
+                enterActiveClass: 'animated slideInRight',
+                leaveActiveClass: 'animated slideOutLeft'
             };
         },
         methods: {
             open() {
-                this.$nextTick(function() {
+                this.$nextTick(() => {
                     $(this.$refs.modal).modal('show');
                 });
             },
             close() {
-                this.$nextTick(function() {
+                this.$nextTick(() => {
                     $(this.$refs.modal).modal('hide');
                     this.$root.$emit('dialog:tutorial:close');
                 });
@@ -94,30 +111,30 @@
             },
             nextItem() {
                 if ( !this.isLastItem() && this.currentItem ) {
-                    var vm = this;
-                    this.enterActivieClass = 'animated slideInLeft';
-                    this.leaveActiveClass = 'animated slideOutRight';
+                    const vm = this;
+                    this.enterActiveClass = 'animated slideInRight';
+                    this.leaveActiveClass = 'animated slideOutLeft';
 
                     $(this.$refs.tips).css('min-height', $(this.$refs.tips).height());
                     this.$nextTick(() => {
                         vm.currentItem = vm.items[vm.items.indexOf(vm.currentItem) + 1];
                         setTimeout(() => {
-                            $(this.$refs.tips).removeAttr('style');
+                            $(this.$refs.tips).css('min-height', '');
                         }, 2000);
                     });
                 }
             },
             previousItem() {
                 if ( !this.isFirstItem() && this.currentItem ) {
-                    var vm = this;
-                    this.enterActivieClass = 'animated slideInRight';
-                    this.leaveActiveClass = 'animated slideOutLeft';
+                    const vm = this;
+                    this.enterActiveClass = 'animated slideInLeft';
+                    this.leaveActiveClass = 'animated slideOutRight';
 
                     $(this.$refs.tips).css('min-height', $(this.$refs.tips).height());
                     this.$nextTick(() => {
                         vm.currentItem = vm.items[vm.items.indexOf(vm.currentItem) - 1];
                         setTimeout(() => {
-                            $(this.$refs.tips).removeAttr('style');
+                            $(this.$refs.tips).css('min-height', '');
                         }, 2000);
                     });
                 }

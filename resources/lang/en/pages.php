@@ -47,6 +47,12 @@ return [
             'geolocation-error' => 'Error: Geolocation could not be determined',
         ],
     ],
+    'discount-vouchers' => [
+        'index' => [
+            'heading' => 'Discount Vouchers',
+            'none-found' => 'No Discount Vouchers could be found.',
+        ],
+    ],
     'manage' => [
         'users' => [
             'index' => [
@@ -153,6 +159,11 @@ return [
         'heading' => 'Profile of :name',
         'labels' => [
             'badges-earned' => 'Badges Earned',
+            'discount-vouchers-earned' => 'Discount Vouchers Earned',
+            'valid-until' => 'Valid until',
+        ],
+        'confirmations' => [
+            'discount-voucher-spend' => 'Are you sure you want to spend this Discount Voucher?',
         ],
     ],
     'profile-edit' => [

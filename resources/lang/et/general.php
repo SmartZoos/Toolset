@@ -21,6 +21,10 @@ return [
        'complete' => 'Lõpeta tegevus',
        'ongoing' => 'Käimasolev tegevus',
    ],
+   'discount-voucher-status' => [
+       'inactive' => 'Inactive',
+       'active' => 'Active',
+   ],
    'language' => 'Keel',
    'languages' => [
        'en' => 'Inglise',
@@ -60,6 +64,9 @@ return [
            'search-text' => 'Otsi teksti',
            'read-more' => 'Lisainfo',
            'image' => 'Pilt',
+           'duration' => 'Duration',
+           'status' => 'Status',
+           'discount-voucher' => 'Discount Voucher',
        ],
        'help' => [
            'playing-time' => 'Raja läbimiseks kuluv aeg minutites',
@@ -93,7 +100,10 @@ return [
        ],
        'options' => [
            'any' => 'Kõik',
-       ]
+       ],
+       'addons' => [
+           'hours' => 'hours',
+       ],
    ],
    'actions' => [
        'create' => 'Loo',
@@ -103,6 +113,7 @@ return [
        'send-to-backpack' => 'Saada Backpacki',
        'download-baked-badge' => 'Lae alla õpimärgi pildifail',
        'assertion-open' => 'Open badge-i tõendi URL',
+       'discount-voucher-spend' => 'Spend Discount Voucher',
    ],
    'minutes' => 'minutid',
    'confirmations' => [

@@ -17,7 +17,8 @@ class ActivityPolicy
      * @param  string $ability Ability to check
      * @return boolean|void    Either returns True to override or does nothing
      */
-    public function before(User $user, $ability) {
+    public function before(User $user, $ability)
+    {
 
         if ($user->isAdmin()) {
             return true;
@@ -103,5 +104,25 @@ class ActivityPolicy
     public function changeZoo(User $user, Activity $activity)
     {
         return $user->id === $activity->user_id;
+    }
+
+    /**
+     * Determines if user is allowed to add voucher to new activities
+     * @param App\User     $user     User model
+     * @return boolean
+     */
+    public function addDiscountVoucher(User $user)
+    {
+        return $user->isZooAdmin();
+    }
+
+    /**
+     * Determies if user is allowed to update/remove vouchers from existing activities
+     * @param  App\User     $user     User model
+     * @param  App\Activity $activity Activity model
+     * @return boolean
+     */
+    public function changeDiscountVoucher(User $user, Activity $activity) {
+        return $user->isZooAdmin($activity->zoo);
     }
 }

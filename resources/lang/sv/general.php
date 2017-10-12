@@ -21,6 +21,10 @@ return [
        'complete' => 'Hela aktiviteten',
        'ongoing' => 'Pågående aktivitet',
    ],
+   'discount-voucher-status' => [
+       'inactive' => 'Inactive',
+       'active' => 'Active',
+   ],
    'language' => 'Språk',
    'languages' => [
        'en' => 'English',
@@ -60,6 +64,9 @@ return [
            'search-text' => 'Sök text',
            'read-more' => 'Läs mera',
            'image' => 'Bild',
+           'duration' => 'Duration',
+           'status' => 'Status',
+           'discount-voucher' => 'Discount Voucher',
        ],
        'help' => [
            'playing-time' => 'Aktivitetstid i minuter',
@@ -93,7 +100,10 @@ return [
        ],
        'options' => [
            'any' => 'Någon',
-       ]
+       ],
+       'addons' => [
+           'hours' => 'hours',
+       ],
    ],
    'actions' => [
        'create' => 'Skapa',
@@ -103,6 +113,7 @@ return [
        'send-to-backpack' => 'Lägg i ryggsäcken',
        'download-baked-badge' => 'Hämta ditt märke',
        'assertion-open' => 'URL till märken',
+       'discount-voucher-spend' => 'Spend Discount Voucher',
    ],
    'minutes' => 'minuter',
    'confirmations' => [

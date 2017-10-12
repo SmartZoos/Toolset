@@ -33,6 +33,9 @@
                 <li class="{{ Request::is('badges')? 'active': '' }}">
                     <a href="{{ route('badge.index') }}">{{ trans('navbar.badges') }}</a>
                 </li>
+                <li class="{{ Request::is('discount_vouchers', 'discount_vouchers/*')? 'active': '' }}">
+                    <a href="{{ route('discount_voucher.index') }}">{{ trans('navbar.discount_vouchers') }}</a>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -63,6 +66,7 @@
                     <li><a href="{{ url('/login') }}">{{ trans('auth.login.form.btn.login') }}</a></li>
                     <li><a href="{{ url('/register') }}">{{ trans('auth.register.form.btn.register') }}</a></li>
                 @else
+                    @php( $discountVouchersCount = Auth::user()->getDiscountVouchersCount() )
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <i class="mdi mdi-account-circle" aria-hidden="true"></i>
@@ -74,6 +78,9 @@
                                 <a href="{!! route('user.profile', [ 'profile' => Auth::user()->id ]) !!}">
                                     <i class="mdi mdi-face-profile" aria-hidden="true"></i>
                                     {{ trans('pages.profile.title') }}
+                                    @if ( $discountVouchersCount > 0 )
+                                        <span class="badge pull-right">{{ $discountVouchersCount }}</span>
+                                    @endif
                                 </a>
                             </li>
                             <li>

@@ -3,6 +3,7 @@
 const VueI18n = require('vue-i18n');
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
+import Hammer from 'hammerjs';
 
 Vue.use(VueI18n);
 Vue.config.lang = window.SmartZoos.config.locale;
@@ -131,7 +132,11 @@ const playGameApp = new Vue({
         },
         setHasSeenTotorial() {
             if ( window.sessionStorage ) {
-                window.sessionStorage.setItem('seen:game:tutorial', 'true');
+                try {
+                    window.sessionStorage.setItem('seen:game:tutorial', 'true');
+                } catch (err) {
+                    // Handles the QuotaExceededError in some versions of Safari on iOS
+                }
             }
         }
     }
