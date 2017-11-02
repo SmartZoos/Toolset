@@ -107,6 +107,7 @@ return [
             'got-it' => 'Got it!',
             'read-more-about' => 'Lisainfo ...',
             'tips-text' => 'Some tips before you start:',
+            'access-code-placeholder' => 'Please enter the code or text to override positional restriction',
             'icons' => [
                 'help' => 'Igal ikoonil on värvikood, mis näitab, milline on küsimuse staatus.',
                 'active' => 'Vastamata',
@@ -152,7 +153,7 @@ return [
         'zoos' => 'Kuvatavad mängud kuuluvad järgmiste loomaaedade juurde',
     ],
     'activity-results' => [
-        'heading' => 'Mängu :title tulemused',
+        'heading' => 'Mängu <strong>:title</strong> tulemused',
 
     ],
     'profile' => [

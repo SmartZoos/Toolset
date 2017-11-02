@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 use App\Activity;
 
+use App\Options\LanguageOptions;
+
 class StoreActivity extends FormRequest
 {
     /**
@@ -31,15 +33,18 @@ class StoreActivity extends FormRequest
      */
     public function rules()
     {
+        $languages = resolve(LanguageOptions::class)->keys();
+        $activity = $this->route('activity');
+
         return [
             'type' => 'required|integer|in:1,2',
             'title' => 'required|max:255',
             'difficulty_level' => 'required|integer|between:1,3',
             'playing_time' => 'integer|min:0',
-            'language' => 'required|in:en,et,ru,fi,swe',
+            'language' => 'required|in:' . implode(',', $languages),
             'contact_information' => 'max:255',
             'featured_image' => 'image|mimes:jpeg,jpg,png',
-            'zoo' => 'required|in:1,2,3',
+            'zoo' => ( $activity && auth()->user()->cannot('changeZoo', $activity) ) ? 'in:1,2,3' : 'required|in:1,2,3',
             'proximity_check' => 'integer|in:1',
             'proximity_radius' => 'integer|between:25,100',
         ];

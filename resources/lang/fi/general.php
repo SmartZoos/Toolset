@@ -67,6 +67,7 @@ return [
            'duration' => 'Duration',
            'status' => 'Status',
            'discount-voucher' => 'Discount Voucher',
+           'access-code' => 'Access Code',
        ],
        'help' => [
            'playing-time' => 'Toimintaaika minuuteissa',
@@ -97,6 +98,8 @@ return [
            'embedded-content' => 'Syötä sulautetti HTML-koodi tähän.',
            'search-text' => 'Syötä etsittävä teksti',
            'read-more' => 'Syötä URL jossa löytyy lisää tietoja aiheesta.',
+           'name-or-email' => 'Name or email',
+           'access-code' => 'Code or text to access question without positioning restrictions',
        ],
        'options' => [
            'any' => 'Joku',
@@ -114,6 +117,7 @@ return [
        'download-baked-badge' => 'Hae arvomerkkikuva',
        'assertion-open' => 'Aukaise arvomerkkilinkki',
        'discount-voucher-spend' => 'Spend Discount Voucher',
+       'get-qr-code' => 'Get QR Code',
    ],
    'minutes' => 'minuuttia',
    'confirmations' => [

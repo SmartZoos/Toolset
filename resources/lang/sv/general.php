@@ -67,6 +67,7 @@ return [
            'duration' => 'Duration',
            'status' => 'Status',
            'discount-voucher' => 'Discount Voucher',
+           'access-code' => 'Access Code',
        ],
        'help' => [
            'playing-time' => 'Aktivitetstid i minuter',
@@ -97,6 +98,8 @@ return [
            'embedded-content' => 'Lägg in inbäddad HTML-kod här.',
            'search-text' => 'Skriv in texten som ska sökas',
            'read-more' => 'Lägg in en URL med mer information om frågan.',
+           'name-or-email' => 'Name or email',
+           'access-code' => 'Code or text to access question without positioning restrictions',
        ],
        'options' => [
            'any' => 'Någon',
@@ -114,6 +117,7 @@ return [
        'download-baked-badge' => 'Hämta ditt märke',
        'assertion-open' => 'URL till märken',
        'discount-voucher-spend' => 'Spend Discount Voucher',
+       'get-qr-code' => 'Get QR Code',
    ],
    'minutes' => 'minuter',
    'confirmations' => [

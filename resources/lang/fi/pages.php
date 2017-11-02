@@ -107,6 +107,7 @@ return [
             'got-it' => 'Got it!',
             'read-more-about' => 'Lue lisää…',
             'tips-text' => 'Some tips before you start:',
+            'access-code-placeholder' => 'Please enter the code or text to override positional restriction',
             'icons' => [
                 'help' => 'Jokaisen kuvakkeen väri osoitta sen tilaa.',
                 'active' => 'Vastaamaton',
@@ -152,7 +153,7 @@ return [
         'zoos' => 'Näytetyt toiminnat kuuluvat seuraaviin eläintarhoihin:',
     ],
     'activity-results' => [
-        'heading' => ':title n tulokset',
+        'heading' => '<strong>:title</strong> n tulokset',
 
     ],
     'profile' => [

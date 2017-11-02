@@ -67,6 +67,7 @@ return [
            'duration' => 'Duration',
            'status' => 'Status',
            'discount-voucher' => 'Discount Voucher',
+           'access-code' => 'Access Code',
        ],
        'help' => [
            'playing-time' => 'Raja läbimiseks kuluv aeg minutites',
@@ -97,6 +98,8 @@ return [
            'embedded-content' => 'Lisa vistutatav kood siia',
            'search-text' => 'Otsimiseks sisesta tekstiosa',
            'read-more' => 'Sisesta veebiaadress kust leiab rohkem infot',
+           'name-or-email' => 'Name or email',
+           'access-code' => 'Code or text to access question without positioning restrictions',
        ],
        'options' => [
            'any' => 'Kõik',
@@ -114,6 +117,7 @@ return [
        'download-baked-badge' => 'Lae alla õpimärgi pildifail',
        'assertion-open' => 'Open badge-i tõendi URL',
        'discount-voucher-spend' => 'Spend Discount Voucher',
+       'get-qr-code' => 'Get QR Code',
    ],
    'minutes' => 'minutid',
    'confirmations' => [
