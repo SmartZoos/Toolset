@@ -1,10 +1,11 @@
 {
-  "css/app.css": "css/app-9b1915387b.css",
-  "js/app.js": "js/app-061408e8e5.js",
+  "css/app.css": "css/app-25bf87d857.css",
+  "js/app.js": "js/app-7ed0beac2f.js",
   "js/create_edit_activity.js": "js/create_edit_activity-b7718c68df.js",
   "js/create_edit_activity_item.js": "js/create_edit_activity_item-a88e6b6e1e.js",
-  "js/play.js": "js/play-7f849615b8.js",
+  "js/play.js": "js/play-da151ab410.js",
   "js/profile.js": "js/profile-10f69f11f8.js",
+  "js/qr_code_modal.js": "js/qr_code_modal-9700157c3a.js",
   "js/search_activities.js": "js/search_activities-898b023511.js",
   "js/welcome.js": "js/welcome-fbc94c6752.js"
 }
