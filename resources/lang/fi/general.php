@@ -13,10 +13,6 @@ return [
     |
     */
 
-   'activity-type' => [
-       'collecting-cards' => 'Keräyskortit',
-       'treasure-hunt' => 'Aarrejahti',
-   ],
    'activity-status' => [
        'complete' => 'Valmis toiminta',
        'ongoing' => 'Jatkuva toiminta',
@@ -49,7 +45,6 @@ return [
    ],
    'forms' => [
        'labels' => [
-           'activity-type' => 'Toimintatyyppi',
            'title' => 'Otsikko',
            'description' => 'Selitys',
            'difficulty-level' => 'Vaikeusaste',
@@ -68,6 +63,11 @@ return [
            'status' => 'Status',
            'discount-voucher' => 'Discount Voucher',
            'access-code' => 'Access Code',
+           'amount' => 'Amount',
+           'hide-incognito' => 'Hide incognito',
+           'hide-incomplete' => 'Hide incomplete',
+           'from' => 'From',
+           'until' => 'Until',
        ],
        'help' => [
            'playing-time' => 'Toimintaaika minuuteissa',
@@ -87,10 +87,12 @@ return [
            'close' => 'Sulje',
            'submit' => 'Lähetä',
            'search' => 'Etsi',
-           'add-activity-items' => 'Lisää tehtäviä',
            'load-more' => 'Lataa lisää',
            'add-option' => 'Lisää vaihtoehto',
            'reset' => 'Palauta',
+           'apply-filters' => 'Apply filters',
+           'search-activity-items' => 'Search Activity Items',
+           'create-new-activity-item' => 'Create new Activity Item',
        ],
        'placeholders' => [
            'keyword-or-title' => 'Syötä avainsana tai otsikko',
@@ -100,12 +102,18 @@ return [
            'read-more' => 'Syötä URL jossa löytyy lisää tietoja aiheesta.',
            'name-or-email' => 'Name or email',
            'access-code' => 'Code or text to access question without positioning restrictions',
+           'datetime' => 'Date or Date and Time',
+           'question-or-information' => 'Please write Question or Information, depending on chosen Question Type',
        ],
        'options' => [
            'any' => 'Joku',
        ],
        'addons' => [
            'hours' => 'hours',
+           'awarded' => 'awarded',
+       ],
+       'tooltips' => [
+           'remove-image' => 'Check to remove an existing image',
        ],
    ],
    'actions' => [

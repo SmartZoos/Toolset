@@ -12,6 +12,8 @@ use App\GameAnswer;
 
 use App\ActivityItem;
 
+use App\PlayerPosition;
+
 use Intervention\Image\Facades\Image;
 
 use Illuminate\Support\Facades\File;
@@ -24,8 +26,22 @@ use Auth;
 
 use Illuminate\Support\Facades\Event;
 
+use Carbon\Carbon;
+
+use Illuminate\Support\Facades\DB;
+
 class GameController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('game.verify', ['except' => ['play', 'downloadPlayerPositions']]);
+    }
+
     /**
      * Display game page for the specified activity.
      *
@@ -50,25 +66,14 @@ class GameController extends Controller
     }
 
     /**
-     * [answer description]
-     * @param  Request                    $request      [description]
+     * Answer a question
+     * @param  \Illuminate\Http\Request   $request      Request object
      * @param  \App\Services\ImageService $imageService ImageService instance
-     * @return [type]                                   [description]
+     * @param  \App\Game                  $game         Game object
+     * @return \Illuminate\Http\Response
      */
-    public function answer(Request $request, ImageService $imageService)
+    public function answer(Request $request, ImageService $imageService, Game $game)
     {
-        $game = Game::find($request->get('game_id'));
-
-        if ( $game->user_id ) {
-            if ( !( Auth::guard('web')->check() && Auth::guard('web')->user()->id === $game->user_id ) ) {
-                return response()->json(['error' => 'Forbidden.'], 403);
-            }
-        }
-
-        if ( $game->isComplete() ) {
-            return response()->json(['error' => 'Game has already been marked as completed.'], 403);
-        }
-
         $activity = $game->activity;
 
         $item = $activity->activityItems()->where('id', $request->get('question_id'))->first();
@@ -140,5 +145,73 @@ class GameController extends Controller
         }
 
         return $answer->getGameData();
+    }
+
+    /**
+     * Log player position
+     * @param  \Illuminate\Http\Request $request Request object
+     * @param  \App\Game                $game    Game object
+     * @return \Illuminate\Http\Response
+     */
+    public function logPlayerPosition(Request $request, Game $game)
+    {
+        $position = $request->get('position');
+
+        if ( !$position )
+        {
+            return response()->json(['error' => 'Position data is missing.'], 400);
+        }
+
+        $playerPosition = new PlayerPosition();
+        $playerPosition->game()->associate($game);
+        $playerPosition->latitude = $position['coords']['latitude'];
+        $playerPosition->longitude = $position['coords']['longitude'];
+        $playerPosition->heading = $position['coords']['heading'];
+        $playerPosition->timestamp = Carbon::createFromTimestamp((int)$position['timestamp'] / 1000);
+        $playerPosition->created_at = Carbon::now();
+        $playerPosition->save();
+
+        return $playerPosition;
+    }
+
+    /**
+     * Trigger download of CSV file with player positions
+     * @param  \App\Game   $game Game object
+     * @return \Illuminate\Http\Response
+     */
+    public function downloadPlayerPositions(Game $game)
+    {
+        $this->authorize('downloadPlayerPositions', $game->activity);
+
+        $headers = [
+            'Content-type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename=game-' . $game->id . '-player-positions.csv',
+            'Pragma' => 'no-cache',
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+            'Expires' => '0',
+        ];
+        $columns = ['Latitude', 'Longitude', 'Heading', 'Timestamp',];
+        $playerPositions = DB::table('player_positions')
+                               ->select('latitude', 'longitude', 'heading', 'timestamp')
+                               ->where('game_id', $game->id)
+                               ->orderBy('timestamp', 'asc')
+                               ->get();
+        $callback = function() use ($playerPositions, $columns)
+        {
+            $handle = fopen('php://output', 'w');
+            fputcsv($handle, $columns);
+
+            if ( $playerPositions->count() > 0 )
+            {
+                foreach ($playerPositions as $position)
+                {
+                    fputcsv($handle, [$position->latitude, $position->longitude, $position->heading, $position->timestamp,]);
+                }
+            }
+
+            fclose($handle);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 }

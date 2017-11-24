@@ -13,10 +13,6 @@ return [
     |
     */
 
-   'activity-type' => [
-       'collecting-cards' => 'Samlarkort',
-       'treasure-hunt' => 'Skattjakt',
-   ],
    'activity-status' => [
        'complete' => 'Hela aktiviteten',
        'ongoing' => 'Pågående aktivitet',
@@ -49,7 +45,6 @@ return [
    ],
    'forms' => [
        'labels' => [
-           'activity-type' => 'Aktivitetstyp',
            'title' => 'Titel',
            'description' => 'Beskrivning',
            'difficulty-level' => 'Svårighetsnivå',
@@ -68,6 +63,11 @@ return [
            'status' => 'Status',
            'discount-voucher' => 'Discount Voucher',
            'access-code' => 'Access Code',
+           'amount' => 'Amount',
+           'hide-incognito' => 'Hide incognito',
+           'hide-incomplete' => 'Hide incomplete',
+           'from' => 'From',
+           'until' => 'Until',
        ],
        'help' => [
            'playing-time' => 'Aktivitetstid i minuter',
@@ -87,10 +87,12 @@ return [
            'close' => 'Stäng',
            'submit' => 'Skicka',
            'search' => 'Sök',
-           'add-activity-items' => 'Lägg till en uppgift.',
            'load-more' => 'Hämta mera.',
            'add-option' => 'Lägg till ett alternativ.',
            'reset' => 'Återställ',
+           'apply-filters' => 'Apply filters',
+           'search-activity-items' => 'Search Activity Items',
+           'create-new-activity-item' => 'Create new Activity Item',
        ],
        'placeholders' => [
            'keyword-or-title' => 'Skriv ett nyckelord eller en rubrik.',
@@ -100,12 +102,18 @@ return [
            'read-more' => 'Lägg in en URL med mer information om frågan.',
            'name-or-email' => 'Name or email',
            'access-code' => 'Code or text to access question without positioning restrictions',
+           'datetime' => 'Date or Date and Time',
+           'question-or-information' => 'Please write Question or Information, depending on chosen Question Type',
        ],
        'options' => [
            'any' => 'Någon',
        ],
        'addons' => [
            'hours' => 'hours',
+           'awarded' => 'awarded',
+       ],
+       'tooltips' => [
+           'remove-image' => 'Check to remove an existing image',
        ],
    ],
    'actions' => [

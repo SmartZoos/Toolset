@@ -10,7 +10,12 @@ const activityApp = new Vue({
     mounted() {
         const vm = this;
 
+        vm.baseUrl = window.Laravel.baseUrl;
         vm.apiUrl = window.Laravel.apiUrl;
+        vm.canCreateActivityItem = window.Laravel.canCreateActivityItem;
+        if ( window.Laravel.hasFeaturedImage ) {
+            vm.hasFeaturedImage = true;
+        }
 
         $(vm.$refs.difficultyLevelButtons).find('button').on('click', (e) => {
             var buttonElement = $(e.target);
@@ -29,10 +34,31 @@ const activityApp = new Vue({
         if ( !$(vm.$refs.proximityCheck).prop('checked') ) {
             $(vm.$refs.proximityRadius).prop('disabled', true);
         }
+
+        $(vm.$refs.featuredImage).on('change', (e) => {
+            this.canResetFeaturedImage = true;
+        });
     },
     data() {
         return {
-            apiUrl: '/api'
+            baseUrl: '/',
+            apiUrl: '/api',
+            canCreateActivityItem: false,
+            canResetFeaturedImage: false,
+            hasFeaturedImage: false
         };
+    },
+    methods: {
+        resetFeaturedImage(e) {
+            e.preventDefault();
+
+            if ( !$(this.$refs.featuredImage).val() ) return;
+
+            this.canResetFeaturedImage = false;
+            $(this.$refs.featuredImage).val('');
+        },
+        canRemoveFeaturedImage() {
+            return !this.hasFeaturedImage || this.canResetFeaturedImage;
+        }
     }
 });

@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 use App\Options\ZooOptions;
-use App\Options\ActivityTypeOptions;
 use App\Options\LanguageOptions;
 use App\Options\DifficultyLevelOptions;
 
@@ -43,15 +42,6 @@ class Activity extends Model
     public function getZoo()
     {
         return resolve(ZooOptions::class)->value($this->zoo);
-    }
-
-    /**
-     * Returns Activity Type title
-     * @return string Activity type title or key
-     */
-    public function getActivityType()
-    {
-        return resolve(ActivityTypeOptions::class)->value($this->type);
     }
 
     /**
@@ -136,13 +126,13 @@ class Activity extends Model
     }
 
     /**
-     * [deleteImage description]
-     * @return [type] [description]
+     * Deleted a featured image from storage if there is one.
+     * Does not set the corresponding attribute to an empty value.
+     * @return boolean
      */
     public function deleteFeaturedImage()
     {
         if ( $this->hasFeaturedImage() ) {
-
             return File::delete( public_path('uploads/images/' . $this->featured_image) );
         }
 

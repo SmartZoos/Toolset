@@ -5,6 +5,7 @@
 @include('activities.includes.options')
 <script>
     window.Laravel.activityItems = <?php echo json_encode($activity_items); ?>;
+    window.Laravel.canCreateActivityItem = <?php echo json_encode(Auth::user()->can('create', 'App\Activity')); ?>;
 </script>
 <script src="{{ elixir('js/create_edit_activity.js') }}"></script>
 @endsection
@@ -17,25 +18,6 @@
         'class' => 'form-horizontal activity-create',
         'role' => 'form',
     ]) !!}
-        <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
-            {!! Form::label('type', trans('general.forms.labels.activity-type'), [
-                'class' => 'col-md-4 control-label',
-            ]) !!}
-            <div class="col-md-6">
-                <div class="input-group col-xs-12">
-                    {!! Form::select('type', $activityTypeOptions, null, [
-                        'class' => 'form-control',
-                    ]) !!}
-                </div>
-
-                @if ($errors->has('type'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('type') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-
         <div class="form-group required{{ $errors->has('title') ? ' has-error' : '' }}">
             {!! Form::label('title', trans('general.forms.labels.title'), [
                 'class' => 'col-md-4 control-label',
@@ -176,7 +158,13 @@
                     </span>
                     {!! Form::file('featured_image', [
                         'class' => 'form-control',
+                        'ref' => 'featuredImage',
                     ]) !!}
+                    <span class="input-group-addon">
+                        <a href="#" class="btn btn-danger btn-xs" ref="removeFeaturedImage" v-on:click="resetFeaturedImage" v-bind:disabled="!canResetFeaturedImage">
+                            <i class="mdi mdi-delete" aria-hidden="true"></i>
+                        </a>
+                    </span>
                 </div>
 
                 <p class="help-block">
@@ -258,7 +246,7 @@
             ]) !!}
             <div class="col-md-6">
                 <div class="input-group col-xs-12" id="activity-items">
-                    <activity-items v-bind:api-url="apiUrl"></activity-items>
+                    <activity-items v-bind:base-url="baseUrl" v-bind:api-url="apiUrl" v-bind:can-create-activity-item="canCreateActivityItem"></activity-items>
                 </div>
             </div>
         </div>
