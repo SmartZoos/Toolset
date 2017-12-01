@@ -68,6 +68,7 @@ return [
            'hide-incomplete' => 'Hide incomplete',
            'from' => 'From',
            'until' => 'Until',
+           'question-or-information' => 'Question/Information',
        ],
        'help' => [
            'playing-time' => 'Activity time in minutes',
@@ -93,6 +94,7 @@ return [
            'apply-filters' => 'Apply filters',
            'search-activity-items' => 'Search Activity Items',
            'create-new-activity-item' => 'Create new Activity Item',
+           'login-or-register' => 'Login/Register',
        ],
        'placeholders' => [
            'keyword-or-title' => 'Type a keyword or title',

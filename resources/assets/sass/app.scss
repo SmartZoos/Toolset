@@ -55,6 +55,22 @@
     }
 }
 
+.email-sign-in {
+    background-color: $gray;
+    background-image: linear-gradient(to right top, $gray, lighten($gray, 5%));
+    border: 1px solid darken($gray, 5%);
+    text-shadow: 0 1px rgba(0,0,0,0.1);
+    color: #fff;
+
+    &:hover, &:active, &:focus {
+        background-color: $gray-light;
+        background-image: linear-gradient(to right top, $gray-light, lighten($gray-light, 5%));
+        border: 1px solid darken($gray-light, 5%);
+        text-shadow: 0 1px rgba(0,0,0,0.3);
+        color: #fff;
+    }
+}
+
 .form-group.required .control-label:after {
    content: "*";
    color: #a94442;
@@ -609,4 +625,10 @@ img.sz-uploaded-image-preview {
     @include button-variant($btn-play-color, lighten($btn-play-bg, 5%), $btn-play-border);
     border-width: 5px;
     border-radius: 10px;
+}
+
+.sz-welcome-page {
+    .row:not(:first-child) {
+        margin-top: 30px;
+    }
 }
