@@ -228,16 +228,8 @@ form.sz-action-form-inline {
                 }
             }
 
-            &.mdi-navigation {
+            &.mdi-crosshairs {
                 color: $gray-light;
-
-                &.active {
-                    color: blue;
-
-                    &::before {
-                        transform: rotate(45deg);
-                    }
-                }
             }
 
             &.mdi-layers {
@@ -631,4 +623,12 @@ img.sz-uploaded-image-preview {
     .row:not(:first-child) {
         margin-top: 30px;
     }
+}
+
+.media {
+  hr {
+    border-color: #d3e0e9;
+    margin-top: 15px;
+    margin-bottom: 0px;
+  }
 }
