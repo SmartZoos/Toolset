@@ -117,6 +117,9 @@ return [
        'tooltips' => [
            'remove-image' => 'Check to remove an existing image',
        ],
+       'warnings' => [
+           'readd-pictures' => 'If you had added any pictures, you have to add them again. Sorry.',
+       ],
    ],
    'actions' => [
        'create' => 'Create',
@@ -132,6 +135,7 @@ return [
    'minutes' => 'minutes',
    'confirmations' => [
        'delete' => 'Are you sure you want to delete this item?',
+       'play' => 'You are not logged in! - Progress will not be saved and any rewards cannot be claimed.',
    ],
    'date-time' => [
        'formats' => [

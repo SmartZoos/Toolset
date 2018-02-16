@@ -117,6 +117,9 @@ return [
        'tooltips' => [
            'remove-image' => 'Check to remove an existing image',
        ],
+       'warnings' => [
+           'readd-pictures' => 'If you had added any pictures, you have to add them again. Sorry.',
+       ],
    ],
    'actions' => [
        'create' => 'Loo',
@@ -132,6 +135,7 @@ return [
    'minutes' => 'minutid',
    'confirmations' => [
        'delete' => 'Oled sa kindek, et soovid selle kustutada?',
+       'play' => 'You are not logged in! - Progress will not be saved and any rewards cannot be claimed.',
    ],
    'date-time' => [
        'formats' => [

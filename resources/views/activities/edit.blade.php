@@ -20,6 +20,7 @@
         'role' => 'form',
         'method' => 'put'
     ]) !!}
+        @include('includes.readd-pictures-alert', [ 'errors' => $errors, ])
         <div class="form-group required{{ $errors->has('title') ? ' has-error' : '' }}">
             {!! Form::label('title', trans('general.forms.labels.title'), [
                 'class' => 'col-md-4 control-label',
@@ -161,6 +162,7 @@
                     {!! Form::file('featured_image', [
                         'class' => 'form-control',
                         'ref' => 'featuredImage',
+                        'accept' => 'image/jpeg, image/png',
                     ]) !!}
                     <span class="input-group-addon" data-toggle="tooltip" data-placement="left" data-trigger="hover" data-container="body" title="{{ trans('general.forms.tooltips.remove-image') }}">
                         {!! Form::checkbox('remove_featured_image', 1, false, [

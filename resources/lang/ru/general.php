@@ -117,6 +117,9 @@ return [
        'tooltips' => [
            'remove-image' => 'Установите флажок, чтобы удалить существующее изображение',
        ],
+       'warnings' => [
+           'readd-pictures' => 'If you had added any pictures, you have to add them again. Sorry.',
+       ],
    ],
    'actions' => [
        'create' => 'Создать',
@@ -132,6 +135,7 @@ return [
    'minutes' => 'Минуты',
    'confirmations' => [
        'delete' => 'Вы уверены, что желаете удалить этот пункт?',
+       'play' => 'You are not logged in! - Progress will not be saved and any rewards cannot be claimed.',
    ],
    'date-time' => [
        'formats' => [

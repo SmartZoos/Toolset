@@ -117,6 +117,9 @@ return [
        'tooltips' => [
            'remove-image' => 'Kryssa i för att ta bort en bild',
        ],
+       'warnings' => [
+           'readd-pictures' => 'If you had added any pictures, you have to add them again. Sorry.',
+       ],
    ],
    'actions' => [
        'create' => 'Skapa',
@@ -132,6 +135,7 @@ return [
    'minutes' => 'minuter',
    'confirmations' => [
        'delete' => 'Ta bort uppgift.  Är du säker?',
+       'play' => 'You are not logged in! - Progress will not be saved and any rewards cannot be claimed.',
    ],
    'date-time' => [
        'formats' => [

@@ -18,6 +18,7 @@
         'class' => 'form-horizontal activity-create',
         'role' => 'form',
     ]) !!}
+        @include('includes.readd-pictures-alert', [ 'errors' => $errors, ])
         <div class="form-group required{{ $errors->has('title') ? ' has-error' : '' }}">
             {!! Form::label('title', trans('general.forms.labels.title'), [
                 'class' => 'col-md-4 control-label',
@@ -159,6 +160,7 @@
                     {!! Form::file('featured_image', [
                         'class' => 'form-control',
                         'ref' => 'featuredImage',
+                        'accept' => 'image/jpeg, image/png',
                     ]) !!}
                     <span class="input-group-addon">
                         <a href="#" class="btn btn-danger btn-xs" ref="removeFeaturedImage" v-on:click="resetFeaturedImage" v-bind:disabled="!canResetFeaturedImage">
