@@ -29,6 +29,35 @@
             completionControlItem.textContent = vm.getAnsweredQuestionsCount() + '/' + _.size(vm.game.activity.questions);
         });
 
+        const userControlItem = document.createElement('i');
+        userControlItem.className = 'mdi';
+        if ( vm.$parent.isLoggedIn ) {
+            userControlItem.className += ' mdi-account';
+        } else {
+            userControlItem.className += ' mdi-account-off';
+        }
+        userControlItem.title = vm.$parent.userName;
+        controlUI.appendChild(userControlItem);
+
+        let userControlTooltipVisible = false;
+        userControlItem.addEventListener('click', function() {
+            $(userControlItem).tooltip('toggle');
+            userControlTooltipVisible = userControlTooltipVisible ? false : true;
+        });
+
+        $(userControlItem).tooltip({
+            'container': 'body',
+            'placement': 'bottom',
+            'title': $(userControlItem).attr('title'),
+            'trigger': 'manual'
+        });
+
+        $(window).on('resize', function () {
+            if ( userControlTooltipVisible ) {
+                $(userControlItem).tooltip('show');
+            }
+        });
+
         const informationControlItem = document.createElement('i');
         informationControlItem.className = 'mdi mdi-information-outline';
         informationControlItem.title = vm.$t('info');
@@ -225,6 +254,7 @@
                             animation: google.maps.Animation.DROP,
                             questionId: question.id,
                             questionType: question.type,
+                            hasAccessCode: _this.hasAccessCode(question),
                             optimized: false
                         });
 
@@ -244,6 +274,10 @@
                                     _this.openQuestionModal(question);
                                 } else if ( _this.hasAccessCode(question) ) {
                                     _this.openAccessCodeModal(question);
+                                } else {
+                                    _this.closeInfoWindow();
+                                    infoWindow.setContent(marker.title);
+                                    infoWindow.open(map, marker);
                                 }
                             } else {
                                 _this.openQuestionModal(question);
@@ -450,7 +484,7 @@
                     anchor: this.mapData.iconAnchor,
                     size: this.mapData.iconSize,
                     scaledSize: this.mapData.iconScaledSize,
-                    url: this.getIconUrl(state, marker.questionType)
+                    url: this.getIconUrl(state, marker.questionType, marker.hasAccessCode)
                 });
             },
             getMarkerBounds() {
