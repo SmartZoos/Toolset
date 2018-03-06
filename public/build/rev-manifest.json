@@ -1,10 +1,10 @@
 {
-  "css/app.css": "css/app-8c24afd153.css",
+  "css/app.css": "css/app-5673c8cad6.css",
   "js/app.js": "js/app-bce021cece.js",
   "js/create_edit_activity.js": "js/create_edit_activity-5132b1826a.js",
   "js/create_edit_activity_item.js": "js/create_edit_activity_item-bec092a34e.js",
   "js/login.js": "js/login-b62c99c00e.js",
-  "js/play.js": "js/play-f4015ebc8e.js",
+  "js/play.js": "js/play-ab78e55f80.js",
   "js/profile.js": "js/profile-1d7913409b.js",
   "js/qr_code_modal.js": "js/qr_code_modal-9700157c3a.js",
   "js/search_activities.js": "js/search_activities-898b023511.js",
