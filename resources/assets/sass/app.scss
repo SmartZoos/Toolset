@@ -223,15 +223,15 @@ form.sz-action-form-inline {
             margin-right: auto;
             font-size: 96px;
 
-            &.sz-image-taken {
-                color: $gray-dark;
-            }
-
             i.mdi {
                 &::before {
                     font-size: 96px;
                 }
             }
+        }
+
+        .sz-image-taken {
+            cursor: pointer;
         }
     }
 
@@ -683,4 +683,14 @@ img.sz-uploaded-image-preview {
 
 .btn.discount-voucher-spend {
     white-space: normal;
+}
+
+.footer-requirements {
+    color: white;
+    padding: 40px 40px;
+    background-color: $gray-light;
+}
+
+.mdi.promoted-activity {
+    line-height: 25px;
 }
