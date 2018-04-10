@@ -1,11 +1,12 @@
 {
-  "css/app.css": "css/app-9d363aeffe.css",
-  "js/app.js": "js/app-bce021cece.js",
-  "js/create_edit_activity.js": "js/create_edit_activity-c4c44fdff8.js",
-  "js/create_edit_activity_item.js": "js/create_edit_activity_item-bec092a34e.js",
+  "css/app.css": "css/app-9d5bc1fa80.css",
+  "js/app.js": "js/app-cdbe193e99.js",
+  "js/create_edit_activity.js": "js/create_edit_activity-3e349082c0.js",
+  "js/create_edit_activity_item.js": "js/create_edit_activity_item-3e5adee794.js",
+  "js/discount_vouchers.js": "js/discount_vouchers-53d7114d7e.js",
   "js/login.js": "js/login-b62c99c00e.js",
-  "js/play.js": "js/play-97b89c4f1e.js",
-  "js/profile.js": "js/profile-1d7913409b.js",
+  "js/play.js": "js/play-42e4964a95.js",
+  "js/profile.js": "js/profile-bbb26b86ca.js",
   "js/qr_code_modal.js": "js/qr_code_modal-cf77f250cb.js",
   "js/search_activities.js": "js/search_activities-898b023511.js",
   "js/welcome.js": "js/welcome-fbc94c6752.js"
