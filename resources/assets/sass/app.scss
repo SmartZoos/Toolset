@@ -11,6 +11,23 @@
 // MaterialDesignIcons
 @import "mdi";
 
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#app {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
 .navbar-header {
   .navbar-brand {
     img.sz-navbar-brand-logo {
@@ -253,10 +270,22 @@ form.sz-action-form-inline {
             .media-right {
                 padding-top: 5px;
             }
+
+            .media-body {
+                .media-heading.selected {
+                    font-weight: bold;
+                }
+            }
         }
 
-        .mdi.correct {
-            color: $brand-success;
+        .mdi {
+            &.correct {
+                color: $brand-success;
+            }
+
+            &.incorrect {
+                color: $brand-danger;
+            }
         }
     }
 
@@ -280,7 +309,11 @@ form.sz-action-form-inline {
                 }
 
                 &.matched {
-                    opacity: 0.5;
+                    background-color: rgba(42, 178, 123, 0.2);
+
+                    img {
+                        opacity: 0.5;
+                    }
                 }
 
                 img {
@@ -397,6 +430,22 @@ form.sz-action-form-inline {
 
             .sz-complete-text {
                 font-size: 300%;
+            }
+        }
+
+        .sz-game-voucher {
+            text-align: center;
+
+            a.sz-voucher-image {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 300px;
+                margin-bottom: 11px;
+            }
+
+            .btn {
+                @include button-variant($btn-qr-code-color, $btn-qr-code-bg, $btn-qr-code-border);
             }
         }
 
@@ -657,7 +706,7 @@ img.sz-uploaded-image-preview {
     }
 }
 
-.btn-qr-code {
+.btn-qr-code, .btn-discount-voucher, .btn-discount-voucher-spend {
     @include button-variant($btn-qr-code-color, $btn-qr-code-bg, $btn-qr-code-border);
 }
 
@@ -681,6 +730,10 @@ img.sz-uploaded-image-preview {
   }
 }
 
+.discount-voucher.invalid-or-spent {
+    opacity: 0.7;
+}
+
 .btn.discount-voucher-spend {
     white-space: normal;
 }
@@ -693,4 +746,8 @@ img.sz-uploaded-image-preview {
 
 .mdi.promoted-activity {
     line-height: 25px;
+}
+
+.badge.sz-orange-badge {
+    background-color: $sz-orange;
 }

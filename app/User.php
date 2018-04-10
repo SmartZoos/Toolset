@@ -173,10 +173,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(DiscountVoucher::class)
             ->withTimestamps()
-            ->wherePivot('spent', 0)
-            ->wherePivot('valid_until', '>', Carbon::now())
             ->withPivot(['valid_until', 'spent',])
-            ->orderBy('discount_voucher_user.valid_until', 'asc');
+            ->orderBy('discount_voucher_user.valid_until', 'desc');
     }
 
     /**
@@ -184,6 +182,16 @@ class User extends Authenticatable
      * @return integer Number of discount vouchers
      */
     public function getDiscountVouchersCount()
+    {
+        return $this->belongsToMany(DiscountVoucher::class)
+            ->count();
+    }
+
+    /**
+     * Returns number of unspent and valid DiscountVoucher objects user currently has
+     * @return integer Number of discount vouchers
+     */
+    public function getUnspentAndValidDiscountVouchersCount()
     {
         return $this->belongsToMany(DiscountVoucher::class)
             ->wherePivot('spent', 0)
@@ -195,20 +203,23 @@ class User extends Authenticatable
     /**
      * Awards DiscountVoucher to a User
      * @param  App\DiscountVoucher $voucher DiscountVoucher object
+     * @param  App\Game            $game    Game object
      * @return void
      */
-    public function awardDiscountVoucher(DiscountVoucher $voucher)
+    public function awardDiscountVoucher(DiscountVoucher $voucher, Game $game = NULL)
     {
         $dateTime = Carbon::now();
         $dateTime->addHours($voucher->duration);
         $this->discountVouchers()->attach($voucher->id, [
             'valid_until' => $dateTime,
+            'game_id' => $game ? $game->id : NULL,
         ]);
         activity()
             ->performedOn($voucher)
             ->withProperties([
                 'user_id' => $this->id,
                 'valid_until' => $dateTime->toIso8601String(),
+                'game_id' => $game ? $game->id : NULL,
             ])
             ->log('awarded');
     }
