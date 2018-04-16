@@ -1,10 +1,11 @@
 {
-  "css/app.css": "css/app-9d5bc1fa80.css",
+  "css/app.css": "css/app-0306a8b077.css",
   "js/app.js": "js/app-cdbe193e99.js",
   "js/create_edit_activity.js": "js/create_edit_activity-3e349082c0.js",
   "js/create_edit_activity_item.js": "js/create_edit_activity_item-3e5adee794.js",
   "js/discount_vouchers.js": "js/discount_vouchers-53d7114d7e.js",
   "js/login.js": "js/login-b62c99c00e.js",
+  "js/manage_users.js": "js/manage_users-d5a6a0580e.js",
   "js/play.js": "js/play-42e4964a95.js",
   "js/profile.js": "js/profile-bbb26b86ca.js",
   "js/qr_code_modal.js": "js/qr_code_modal-cf77f250cb.js",
