@@ -69,6 +69,8 @@ return [
                 'roles' => 'Roolit',
                 'manage-roles' => 'Käsittele rooleja',
                 'remove-role' => 'Poista rooli',
+                'block-account' => 'Block',
+                'unblock-account' => 'Unblock',
                 'confirmations' => [
                     'role' => 'Haluatko tosiaan poista valitun roolin?',
                 ],
@@ -84,6 +86,8 @@ return [
             'activity-items' => 'Tehtävät',
             'games' => 'Pelit',
             'discount-vouchers' => 'Vouchers',
+            'blocked-users' => 'Blocked',
+            'unverified-users' => 'Unverified',
             'captions' => [
                 'activities-by-zoo' => 'Toiminnat eläintarhaa kohti',
                 'activities-by-language' => 'Toiminnat kieltä kohti',

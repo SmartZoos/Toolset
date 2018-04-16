@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\Log;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Support\Facades\Event;
 use Carbon\Carbon;
+use App\Notifications\ResetPassword;
+use Jrean\UserVerification\Traits\UserVerification;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use LogsActivity;
+    use UserVerification;
 
     /**
      * The attributes that are mass assignable.
@@ -238,5 +241,23 @@ class User extends Authenticatable
             ->count();
 
         return $count !== 0;
+    }
+
+    /**
+     * Determine if the user has been blocked.
+     * @return [type] [description]
+     */
+    public function blocked()
+    {
+        return ! is_null($this->blocked_at);
+    }
+
+    /**
+     * Sedn reset password notification
+     * @param string $token Password reset token
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
     }
 }

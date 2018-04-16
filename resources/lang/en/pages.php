@@ -69,6 +69,8 @@ return [
                 'roles' => 'Roles',
                 'manage-roles' => 'Manage roles',
                 'remove-role' => 'Remove role',
+                'block-account' => 'Block',
+                'unblock-account' => 'Unblock',
                 'confirmations' => [
                     'role' => 'Are you sure you want to remove selected role?',
                 ],
@@ -84,6 +86,8 @@ return [
             'activity-items' => 'Activity Items',
             'games' => 'Games',
             'discount-vouchers' => 'Vouchers',
+            'blocked-users' => 'Blocked',
+            'unverified-users' => 'Unverified',
             'captions' => [
                 'activities-by-zoo' => 'Activities by Zoo',
                 'activities-by-language' => 'Activities by Language',

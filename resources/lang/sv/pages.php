@@ -69,6 +69,8 @@ return [
                 'roles' => 'Roller',
                 'manage-roles' => 'Hantera roller',
                 'remove-role' => 'Ta bort roll',
+                'block-account' => 'Block',
+                'unblock-account' => 'Unblock',
                 'confirmations' => [
                     'role' => 'Ta bort roll.  Är du säker?',
                 ],
@@ -84,6 +86,8 @@ return [
             'activity-items' => 'Uppgifter',
             'games' => 'Spel',
             'discount-vouchers' => 'Rabattkuponger',
+            'blocked-users' => 'Blocked',
+            'unverified-users' => 'Unverified',
             'captions' => [
                 'activities-by-zoo' => 'Sorterade per djurpark',
                 'activities-by-language' => 'Sorterade per språk',

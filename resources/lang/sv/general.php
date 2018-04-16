@@ -140,6 +140,8 @@ return [
    'confirmations' => [
        'delete' => 'Ta bort uppgift.  Är du säker?',
        'play' => 'Du är inte inloggad!  Ditt spel kommer inte att sparas och du kan inte hämta ut några priser.',
+       'block-account' => 'Are you sure you want to block selected account?',
+       'unblock-account' => 'Are you sure you want to unblock selected account?',
    ],
    'date-time' => [
        'formats' => [
@@ -164,5 +166,15 @@ return [
        'text' => 'Denna webbplats använder kakor för att du ska få en så bra upplevelse som möjligt. <a href=":policy" target="_blank">Genom att fortsätta godkänder du användandet av kakor.</a>',
        'button-agree' => 'Jag godkänner',
    ],
-   'system-requirements' => 'Minimum requirements: operation system iOS (version 10) or Android 6. At least 3G internet connection and working GPS module is needed.',
+   'system-requirements' => 'Minimum requirements: operation system iOS (version 10) or Android 7. At least 3G internet connection and working GPS module is needed.',
+   'messages' => [
+       'warnings' => [
+           'account-blocked' => 'This account has been suspended. For more information please contact administration.',
+           'account-email-not-verified' => 'This account has not been verified yet. Use verification instructions sent to you by email.',
+       ],
+       'successes' => [
+           'account-email-verification-sent' => 'Your account has been created. We have sent you an email containing verification instructions.',
+           'account-email-verified' => 'Your account has been successfuly verified. You can now log in.',
+       ],
+   ],
 ];
