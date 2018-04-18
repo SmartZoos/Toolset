@@ -4,6 +4,9 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\User;
+use App\Activity;
+use Carbon\Carbon;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,6 +17,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\AwardBadges::class,
+        Commands\MigratePublicStorage::class,
     ];
 
     /**
@@ -24,8 +28,28 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->call(function()
+        {
+            Activity::onlyTrashed()->where('deleted_at', '<', Carbon::now()->subHours(24))->chunk(50, function($activities)
+            {
+                foreach( $activities as $activity )
+                {
+                    $activity->forceDelete();
+                    $activity->deleteFileStorage();
+                }
+            });
+        })->daily()->name('removeTrashedActivities')->withoutOverlapping();
+
+        $schedule->call(function()
+        {
+            User::where('verified', 0)->where('created_at', '<', Carbon::now()->subHours(48))->chunk(50, function($users)
+            {
+                foreach ( $users as $user )
+                {
+                    $user->delete();
+                }
+            });
+        })->daily()->name('removeUnverifiedUsers')->withoutOverlapping();
     }
 
     /**

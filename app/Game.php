@@ -9,6 +9,10 @@ use App\Traits\UuidModel;
 
 use Illuminate\Support\Facades\Log;
 
+use App\Activity;
+
+use Illuminate\Support\Facades\File;
+
 class Game extends Model
 {
     use UuidModel;
@@ -189,10 +193,26 @@ class Game extends Model
 
     /**
      * Returns storage path hash for the ActivityItem
-     * @return string SHA1 hash used for storage path
+     * @return string Storage path
      */
     public function getStoragePath()
     {
-        return $this->id . '/';
+        return Activity::getStoragePathForId($this->activity_id) . $this->id . '/';
+    }
+
+    /**
+     * Delete storage if one exists
+     * @return boolean
+     */
+    public function deleteFileStorage()
+    {
+        $fullPath = public_path('uploads/images/' . $this->getStoragePath());
+
+        if ( File::exists($fullPath) && File::isDirectory($fullPath) )
+        {
+            File::deleteDirectory($fullPath);
+        }
+
+        return false;
     }
 }
