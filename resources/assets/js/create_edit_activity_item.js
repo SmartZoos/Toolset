@@ -96,14 +96,18 @@ window.initMap = function() {
       return marker;
     }
 
-    function repositionMarker(latLng, marker, map) {
-        setLatAndLngValues(latLng);
-        map.panTo(latLng);
-        marker.setPosition(latLng);
+    function replayMarkerAnimation(marker) {
         marker.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout(function() {
             marker.setAnimation(null);
         }, 500);
+    }
+
+    function repositionMarker(latLng, marker, map) {
+        setLatAndLngValues(latLng);
+        map.panTo(latLng);
+        marker.setPosition(latLng);
+        replayMarkerAnimation(marker);
     }
 
     function getInitialLatLng() {
@@ -165,6 +169,27 @@ window.initMap = function() {
 
         repositionMarker(latLng, marker, map);
     });
+
+    let longPress = false;
+    let startTime;
+    let endTime;
+
+    map.addListener('mousedown', function(event) {
+        startTime = new Date().getTime();
+    });
+
+    map.addListener('mouseup', function(event) {
+        endTime = new Date().getTime();
+        longPress = (endTime - startTime < 500) ? false : true;
+    });
+
+    map.addListener('click', function(event) {
+        if ( longPress ) {
+            setLatAndLngValues(event.latLng);
+            marker.setPosition(event.latLng);
+            replayMarkerAnimation(marker);
+        }
+    });
 };
 
 const VueI18n = require('vue-i18n');
@@ -178,8 +203,25 @@ Vue.component('match-pairs', require('./components/MatchPairs.vue'));
 
 const addActivityItemApp = new Vue({
     el: 'form#' + window.Laravel.activityItemFormId,
-    data: {
-        questionType: $('select[name="type"]').val()
+    mounted() {
+        const vm = this;
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        if ( window.Laravel.hasImage ) {
+            vm.hasImage = true;
+        }
+
+        $(vm.$refs.image).on('change', (e) => {
+            this.canResetImage = true;
+        });
+    },
+    data() {
+        return {
+            questionType: $('select[name="type"]').val(),
+            canResetImage: false,
+            hasImage: false
+        };
     },
     methods: {
         hasQuestionData() {
@@ -204,6 +246,29 @@ const addActivityItemApp = new Vue({
             }
 
             return false;
+        },
+        resetImage(e) {
+            e.preventDefault();
+
+            if ( !$(this.$refs.image).val() ) return;
+
+            this.canResetImage = false;
+            $(this.$refs.image).val('');
+        },
+        canRemoveImage() {
+            return !this.hasImage || this.canResetImage;
+        },
+        hasRemovedImagesData() {
+            return window.Laravel.removedImages && window.Laravel.removedImages.length > 0;
+        },
+        getRemovedImagesData() {
+            return window.Laravel.removedImages;
+        },
+        hasRemovedImageMatchesData() {
+            return window.Laravel.removedImageMatches && window.Laravel.removedImageMatches.length > 0;
+        },
+        getRemovedImageMatchesData() {
+            return window.Laravel.removedImageMatches;
         }
     }
 });

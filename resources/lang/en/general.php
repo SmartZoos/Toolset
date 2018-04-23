@@ -119,6 +119,8 @@ return [
        ],
        'tooltips' => [
            'remove-image' => 'Check to remove an existing image',
+           'remove-selected-image' => 'Remove currently selected image',
+           'mark-option-as-correct' => 'Check to mark option as correct',
        ],
        'warnings' => [
            'readd-pictures' => 'If you had added any pictures, you have to add them again. Sorry.',
@@ -168,15 +170,15 @@ return [
        'text' => 'This website uses cookies to ensure you get the best possible online experience. By continuing to use our website, you <a href=":policy" target="_blank">agree to the use of cookies</a>.',
        'button-agree' => 'Agree',
    ],
-   'system-requirements' => 'Minimum requirements: operation system iOS (version 10) or Android 7. At least 3G internet connection and working GPS module is needed.',
+   'system-requirements' => 'Minimum requirements: operating system iOS (version 10) or Android 7. At least 3G internet connection and working GPS module is needed.',
    'messages' => [
        'warnings' => [
-           'account-blocked' => 'This account has been suspended. For more information please contact administration.',
+           'account-blocked' => 'This account has been suspended. For more information please contact the administration.',
            'account-email-not-verified' => 'This account has not been verified yet. Use verification instructions sent to you by email.',
        ],
        'successes' => [
            'account-email-verification-sent' => 'Your account has been created. We have sent you an email containing verification instructions.',
-           'account-email-verified' => 'Your account has been successfuly verified. You can now log in.',
+           'account-email-verified' => 'Your account has been successfully verified. You can now log in.',
        ],
    ],
 ];
