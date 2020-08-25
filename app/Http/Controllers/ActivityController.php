@@ -164,7 +164,7 @@ class ActivityController extends Controller
             });
         }
 
-        if ( $request->has('difficulty-level') ) {
+        if ( $request->has('difficulty-level') && trim($request->get('difficulty-level')) {
             $query->where('difficulty_level', '=', (int)$request->get('difficulty-level'));
         }
 
