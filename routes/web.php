@@ -129,4 +129,5 @@ Route::group(['prefix' => 'legal'], function()
 {
     Route::get('/terms_and_conditions', 'LegalController@termsAndConditions')->name('legal.terms');
     Route::get('/privacy_policy', 'LegalController@privacyPolicy')->name('legal.policy');
+    Route::get('/account-deletion', 'LegalController@accountDeletion')->name('legal.account-deletion');
 });

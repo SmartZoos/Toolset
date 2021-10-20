@@ -42,4 +42,14 @@ class LegalController extends Controller
             'view' => self::detectViewForLocale('legal.policy'),
         ]);
     }
+
+  /**
+   * Responds with account deletion instructions page.
+   *
+   * @return \Illuminate\Http\Response
+   */
+    public function accountDeletion()
+    {
+      return view('legal.account-deletion');
+    }
 }

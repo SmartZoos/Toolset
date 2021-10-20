@@ -213,5 +213,11 @@ return [
             'guest' => 'In order to collect badges, you must be <a href=":loginUrl">logged in</a>.',
         ],
     ],
+    'legal' => [
+        'account-deletion' => [
+            'heading' => 'Account deletion instructions',
+            'content' => 'Please contact us at info [at] smartzoos.eu if you ever need to delete your account and all of the data that is associated with it.',
+        ],
+    ],
 
 ];
