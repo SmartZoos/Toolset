@@ -34,6 +34,16 @@
     @include('includes.cookie-consent')
 
     <div id="app">
+        <div class="alert alert-danger text-center" role="alert" style="margin-bottom: 0; border-radius: 0;">
+            <strong>We regret to inform you that our web app will be shutting down on August 2023.</strong>
+            <br>
+            We understand that this news may come as a surprise and inconvenience for some of you, but we want to assure you that we have made this decision after much consideration and careful evaluation of the app’s performance.
+            <br>
+            We would like to thank you for your loyal support and for being a part of our community. We are grateful for the trust you have placed in us, and we apologize for any disruption that this may cause in your workflow.
+            <br>
+            We want to thank you for your understanding and for being a part of our journey. If you have any questions or concerns, please do not hesitate to contact us at priit.tammets [at] tlu.ee.
+        </div>
+
         @include('includes.navbar')
 
         @yield('content')
